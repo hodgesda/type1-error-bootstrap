@@ -1,5 +1,5 @@
 ---
-title: "README"
+title: "<Insert Clever Project Title>"
 author: "Daniel Hodges"
 date: "10/18/2018"
 output: pdf_document
@@ -9,22 +9,13 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{bash}
+git config --global user.email "hodgesda@oregonstate.edu"
+git config --global user.name "hodgesda"
+git config --global credential.helper 'cache --timeout 3600'
 ```
 
-## Including Plots
+## Project Description
+The goal of my project is to compare the Type I error rate of Bootstrap methods with more traditional methods under different settings. I will first stick to the mean parameter for simplicity, trying different parameters if time allows. The plan is to generate several populations: one symmetric and at least one that is not symmetric, and perform bootstrapping on samples of varying size n (with varying number of resamples, nboot). Then estimating the Type I error rate by seeing how many hypothesis tests from the bootstrap procedure incorrectly reject the known population parameter. It might be of interest to record at what sample size the Type I error rate is close to the desired level alpha.
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+My intuition coming into this project is that the bootstrap methods will require a sample size roughly as large as the CLT requires for t-methods. I think under a symmetric population distribution this sample size might be a little smaller for bootstrapping compared to t-methods. Under an asymmetric population I think we might need a little larger sample size.
