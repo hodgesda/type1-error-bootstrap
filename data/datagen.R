@@ -6,11 +6,15 @@
 #are arbitrary.
 library(here)
 library(tidyverse)
-norm_part <- rnorm(500000, mean=20, sd=12)
-t_part <- rt(500000, df=5, ncp=20)
-pop1 <- c(norm_part,t_part)
+norm1 <- rnorm(500000, mean=20, sd=12)
+norm2 <- rnorm(500000, mean=20, sd=5)
+pop1 <- c(norm1,norm2)
 hist(pop1, breaks=50)
-sum(pop1>100)
+abline(v=mean(pop1),col="red")
 
+pop2 <- rlnorm(1000000, meanlog=log(1.5), sdlog=1)
+hist(pop2, breaks=500)
+abline(v=mean(pop2),col="red")
 
 write_rds(pop1, here("results", "pop1.rds"))
+write_rds(pop2, here("results", "pop2.rds"))

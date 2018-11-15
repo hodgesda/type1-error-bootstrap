@@ -6,9 +6,13 @@ badfunctionname <- function(population, n, nboot, mu, alternative){
   samp <- sample(population, n)
   
   #perform a t-test on the sample
-  ttest <- t.test(samp, alternative, mu)
-  #bootstrap the sample using Do() from the package mosaic.
-  bstrap <- Do(nboot)*mean(sample(samp, replace=TRUE))
+  ttest <- t.test(samp, alternative=alternative, mu=mu)
+  #bootstrap the sample using the clever iid thing with a matrix.
+  bstrap <- matrix(sample(samp, nboot*length(samp),replace=TRUE),ncol=nboot)
+  
+  #We want some p values now
+  c(ttest$p.value,
+  sum(colMeans(bstrap)>mu)/nboot)
   
   #need to figure out output. I want the p-value from the t-test to come out and
   #a p-value from the bootstrap. I think I need some if-else clauses to deal with the
