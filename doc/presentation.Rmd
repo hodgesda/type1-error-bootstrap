@@ -1,35 +1,80 @@
 ---
-title: "Presentation"
-author: "Daniel Hodges"
-date: "11/26/2018"
-output: ioslides_presentation
+title: "Type I Error in Bootstrapping"
+author: "Dan Hodges"
+date: "https://github.com/ST541-Fall2018/hodgesda-project-comparing-typeI-bootstrap"
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
-
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
-
-## Slide with Bullets
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+```{r}
+library(ggplot2)
+presentdata <- readRDS("/cloud/project/results/presentdata.rds")
+pepper <- readRDS("/cloud/project/results/pop1.rds")
+pepper.data <- data.frame(pepper)
+ibo <- readRDS("/cloud/project/results/pop2.rds")
+ibo.data <- data.frame(ibo)
 ```
 
-## Slide with Plot
+## Motivation
+- Bootstrapping is taught as an alternative to traditional testing methods.
+- It can seem "magical" (One procedure to test any statistic).
+- Statistics faculty caution against "Teaching students enough to be dangerous."
 
-```{r pressure}
-plot(pressure)
+## Motivation
+- How does the bootstrapping procedure compare to a more traditional test in terms of Type I error?
+- This project will compare bootstrapping the mean to the T-test.
+
+## Quick Overview
+- Simulated two populations: one symmetric, one not.
+- For a vector of sample sizes perform many* bootstraps and estimate the Type-I error rate, alpha.
+
+## Meet the Populations
+
+```{r}
+ggplot(pepper.data,aes(x=pepper))+geom_histogram(bins=100)+
+  xlab("x")+theme_bw()
 ```
 
+## Meet the Populations
+
+```{r}
+ggplot(ibo.data,aes(x=ibo))+geom_histogram(bins=100)+
+  xlab("x")+theme_bw()
+```
+
+## Preliminary Results
+
+```{r}
+ggplot(presentdata[presentdata$population=="Pepper",], aes(x=as.factor(n), y=alpha, color=as.factor(nboot), group=as.factor(nboot))) +
+  geom_point() +
+  geom_line()+
+  theme_bw()+
+  ggtitle("Estimated Type I Error from Symmetric Population")+
+  xlab("Sample Size")+
+  ylab("Alpha")+
+  scale_colour_discrete(name="Bootstrap Size")
+
+```
+
+## Preliminary Results
+
+```{r}
+ggplot(presentdata[presentdata$population=="Ibo",], aes(x=as.factor(n), y=alpha, color=as.factor(nboot), group=as.factor(nboot))) +
+  geom_point() +
+  geom_line()+
+  theme_bw()+
+  ggtitle("Estimated Type I Error from Asymmetric Population")+
+  xlab("Sample Size")+
+  ylab("Alpha")+
+  scale_colour_discrete(name="Bootstrap Size")
+```
+
+## Thank You
+
+Github Repo: https://github.com/ST541-Fall2018/hodgesda-project-comparing-typeI-bootstrap
