@@ -1,4 +1,4 @@
-TTESTONLY <- function(population, n, nboot, mu, alternative="two.sided"){
+t_pval <- function(population, n, nboot, mu, alternative="two.sided"){
   #draw a sample from the population of size n
   samp <- sample(population, n)
   

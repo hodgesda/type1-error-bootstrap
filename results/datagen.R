@@ -1,9 +1,6 @@
-#The idea is to make at least two datasets, one should be a setting where bootstrapping and
-#t-methods are effective (symmetric) and the other something where they might fail (skewed).
-#Per Charlotte's suggestion the first simulated population will be from mixed distributions.
-#A normal distribution provides the bulk of points in the center while a t-distribution
-#contributes additional observations into the tails. The mean and sd of the normal and t-distributions
-#are arbitrary.
+#The data generated here will be used to examine the bootstrap testing procedure and see if the type I error rates are what we expect.
+#The first data set is symmetric coming from a a mixture of two normal distributions. The second comes from a log-normal distribution.
+#Quick histograms were made in this file but this does not need to be run again. The data generated here is in the repo.
 library(here)
 library(tidyverse)
 norm1 <- rnorm(500000, mean=20, sd=12)
