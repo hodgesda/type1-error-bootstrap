@@ -1,5 +1,5 @@
 ---
-title: "<Insert Clever Project Title>"
+title: "ST 541 Project README"
 author: "Daniel Hodges"
 date: "10/18/2018"
 output: pdf_document
@@ -9,13 +9,19 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{bash}
-git config --global user.email "hodgesda@oregonstate.edu"
-git config --global user.name "hodgesda"
-git config --global credential.helper 'cache --timeout 3600'
-```
-
 ## Project Description
+
 The goal of my project is to compare the Type I error rate of Bootstrap methods with more traditional methods under different settings. I will first stick to the mean parameter for simplicity, trying different parameters if time allows. The plan is to generate several populations: one symmetric and at least one that is not symmetric, and perform bootstrapping on samples of varying size n (with varying number of resamples, nboot). Then estimating the Type I error rate by seeing how many hypothesis tests from the bootstrap procedure incorrectly reject the known population parameter. It might be of interest to record at what sample size the Type I error rate is close to the desired level alpha.
 
 My intuition coming into this project is that the bootstrap methods will require a sample size roughly as large as the CLT requires for t-methods. I think under a symmetric population distribution this sample size might be a little smaller for bootstrapping compared to t-methods. Under an asymmetric population I think we might need a little larger sample size.
+
+## Reproducing This Project
+
+In order to reproduce my work, you will need to have the packages `tidyverse`, `here`, and `gridExtra` installed. Library calls are in the script files when needed. The project can be reproduced by following the order provided by the numbers on the file names. The first two are found in the "R" folder in the repo and the others are in the "results" folder.
+
+- 01_bootp_func.R
+- 02_tp_func.R
+- 03_datagen.R
+- 04_sim.R
+
+The report and presentation can be found in the "doc" folder. Note that the presentation was based on smaller simulations. I initially ran the simulation on the cloud and had some issues with timing out and general slowness. So I ended up running the simulation again locally for the report.
