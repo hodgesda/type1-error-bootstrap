@@ -3,11 +3,14 @@ title: "ST 541 Project README"
 author: "Daniel Hodges"
 date: "10/18/2018"
 output: pdf_document
+urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+[Link to Project Report](https://github.com/ST541-Fall2018/hodgesda-project-comparing-typeI-bootstrap/blob/master/doc/report.pdf)
 
 ## Project Description
 
